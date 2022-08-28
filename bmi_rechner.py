@@ -25,7 +25,10 @@ class BMI_Rechner:
         return self.bmi
 
     def calculateBmi(self):
-        self.bmi = self.masse / (self.groesse * self.groesse)
+        try:
+            self.bmi = self.masse / (self.groesse * self.groesse)
+        except:
+            print("Keine Daten eingegeben")
 
     def getBmiBeurteilung(self):
         if self.bmi <= 20 and self.geschlecht == "m":

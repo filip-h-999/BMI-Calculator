@@ -4,7 +4,7 @@
 # Autor:    ???
 import math
 from tkinter import *
-from tkinter import messagebox
+import keyboard
 from bmi_rechner import *
 
 
@@ -41,24 +41,28 @@ class BMI_GUI:
         lab7 = Label(window, fg="black", relief="raised", textvariable=self.wert)
         lab7.place(x=150, y=250, width=100, height=25)
 
-        self.korpermasse = DoubleVar()
-        text1 = Entry(window, fg="black", relief="raised", textvariable=self.korpermasse)
-        text1.place(x=150, y=30, width=50, height=25)
-
-        self.korpergrosse = DoubleVar()
-        text2 = Entry(window, fg="black", relief="raised", textvariable=self.korpergrosse)
-        text2.place(x=150, y=60, width=50, height=25)
+        def createEntry(textvar: DoubleVar(), posX: int, posY: int, Width: int, Height: int, nextFocus: Entry = None):
+            text = Entry(window, fg="black", relief="raised", textvariable=textvar)
+            text.place(x=posX, y=posY, width=Width, height=Height)
+            if nextFocus is not None:
+                text.bind("<Down>", lambda funct1: nextFocus.focus())
+            return text
 
         self.geschlecht = StringVar()
-        text3 = Entry(window, fg="black", relief="raised", textvariable=self.geschlecht)
-        text3.place(x=150, y=90, width=50, height=25)
+        entryGeschlecht = createEntry(self.geschlecht, 150, 90, 50, 25)
+
+        self.korpergrosse = DoubleVar()
+        entryGrosse = createEntry(self.korpergrosse, 150, 60, 50, 25, entryGeschlecht)
+
+        self.korpermasse = DoubleVar()
+        entryMasse = createEntry(self.korpermasse, 150, 30, 50, 25, entryGrosse)
+        entryMasse.focus()
 
         btn = Button(window, text="Berechnen", font="courier 12 italic bold", background="lightgreen",
                      command=self.annehmen)
         btn.place(x=100, y=150, width=100, height=40)
 
-        text1.focus()
-        text1.bind("<Return>", lambda funct1: text2.focus())
+        keyboard.on_press_key("Enter", lambda _: self.annehmen())
 
     def annehmen(self):
         self.datenAktualisieren()
