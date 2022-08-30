@@ -1,7 +1,3 @@
-# Datei:    bmi_rechner.py
-# Version:  1.0
-# Autor:    Th.Beyer
-
 class BMI_Rechner:
     def __init__(self):
         self.masse = 0.0
@@ -31,24 +27,26 @@ class BMI_Rechner:
             print("Keine Daten eingegeben")
 
     def getBmiBeurteilung(self):
-        if self.bmi <= 20 and self.geschlecht == "m":
-            return "Untergewicht"
-        elif 20 < self.bmi <= 25 and self.geschlecht == "m":
-            return "Normalgewicht"
-        elif 25 < self.bmi <= 30 and self.geschlecht == "m":
-            return "Ubergewicht"
-        elif 30 < self.bmi <= 40 and self.geschlecht == "m":
-            return "Adipositas"
-        elif self.bmi >= 40 and self.geschlecht == "m":
-            return "massive Adipositas"
+        if self.geschlecht == "m":
+            if self.bmi <= 20:
+                return "Untergewicht"
+            elif 20 < self.bmi <= 25:
+                return "Normalgewicht"
+            elif 25 < self.bmi <= 30:
+                return "Ubergewicht"
+            elif 30 < self.bmi <= 40:
+                return "Adipositas"
+            elif self.bmi >= 40:
+                return "massive Adipositas"
 
-        if self.bmi <= 19 and self.geschlecht == "w":
-            return "Untergewicht"
-        elif 19 < self.bmi <= 24 and self.geschlecht == "w":
-            return "Normalgewicht"
-        elif 24 < self.bmi <= 30 and self.geschlecht == "w":
-            return "Ubergewicht"
-        elif 30 < self.bmi <= 40 and self.geschlecht == "w":
-            return "Adipositas"
-        elif self.bmi >= 40 and self.geschlecht == "w":
-            return "massive Adipositas"
+        if self.geschlecht == "w":
+            if self.bmi <= 19:
+                return "Untergewicht"
+            elif 19 < self.bmi <= 24:
+                return "Normalgewicht"
+            elif 24 < self.bmi <= 30:
+                return "Ubergewicht"
+            elif 30 < self.bmi <= 40:
+                return "Adipositas"
+            elif self.bmi >= 40:
+                return "massive Adipositas"

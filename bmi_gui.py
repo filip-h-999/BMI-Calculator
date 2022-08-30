@@ -1,7 +1,3 @@
-# Datei:    bmi_gui.py
-# Version:  ???
-# Datum:    ???
-# Autor:    ???
 import math
 from tkinter import *
 import keyboard
