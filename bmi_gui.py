@@ -27,9 +27,9 @@ class BMI_GUI:
         createLabel("im M", 208, 60, 35, 25)
         createLabel("m/w", 208, 90, 35, 25)
 
-        self.klassifikation = StringVar()
-        self.klassifikation.set("")
-        lab6 = Label(window, fg="black", relief="raised", textvariable=self.klassifikation)
+        self.classification = StringVar()
+        self.classification.set("")
+        lab6 = Label(window, fg="black", relief="raised", textvariable=self.classification)
         lab6.place(x=150, y=220, width=100, height=25)
 
         self.wert = IntVar()
@@ -44,11 +44,11 @@ class BMI_GUI:
                 text.bind("<Down>", lambda funct1: nextFocus.focus())
             return text
 
-        self.geschlecht = StringVar()
-        entryGeschlecht = createEntry(self.geschlecht, 150, 90, 50, 25)
+        self.gender = StringVar()
+        entryGender = createEntry(self.gender, 150, 90, 50, 25)
 
         self.korpergrosse = DoubleVar()
-        entryGrosse = createEntry(self.korpergrosse, 150, 60, 50, 25, entryGeschlecht)
+        entryGrosse = createEntry(self.korpergrosse, 150, 60, 50, 25, entryGender)
 
         self.korpermasse = DoubleVar()
         entryMasse = createEntry(self.korpermasse, 150, 30, 50, 25, entryGrosse)
@@ -67,7 +67,7 @@ class BMI_GUI:
     def datenAktualisieren(self):
         kMasse = self.korpermasse.get()
         kGrosse = self.korpergrosse.get()
-        mwGeschlecht = self.geschlecht.get()
+        mwGeschlecht = self.gender.get()
 
         self.derRechner.setMasse(kMasse)
         self.derRechner.setGroesse(kGrosse)
@@ -76,7 +76,7 @@ class BMI_GUI:
 
     def anzeigeAktualisieren(self):
         beurteilung = self.derRechner.getBmiBeurteilung()
-        self.klassifikation.set(beurteilung)
+        self.classification.set(beurteilung)
         bmi = self.derRechner.getBmi()
         self.wert.set(math.ceil(bmi))
 
